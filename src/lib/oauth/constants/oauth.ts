@@ -5,6 +5,7 @@ import {
 } from "@omniroute/open-sse/config/antigravityUpstream.ts";
 import {
   CODEBUDDY_CN_USER_AGENT,
+  CODEBUDDY_INTL_USER_AGENT,
   GITHUB_COPILOT_API_VERSION,
   GITHUB_COPILOT_CHAT_PLUGIN_VERSION,
   GITHUB_COPILOT_CHAT_USER_AGENT,
@@ -115,7 +116,28 @@ export const CODEBUDDY_CN_CONFIG = {
   tokenUrl: "https://copilot.tencent.com/v2/plugin/auth/token",
   refreshUrl: "https://copilot.tencent.com/v2/plugin/auth/token/refresh",
   userAgent: CODEBUDDY_CN_USER_AGENT,
+  domain: "copilot.tencent.com",
   platform: "CLI",
+  pollInterval: 5000,
+};
+
+// CodeBuddy International (www.codebuddy.ai) OAuth Configuration — same custom
+// Device-Auth Flow as CN, against the .ai host. Two differences from CN, both
+// load-bearing: the endpoints live on www.codebuddy.ai (a SEPARATE issuer — a CN
+// token is rejected there with 401 invalid_issuer), and `platform` is lowercase
+// "ide" because the intl gateway is the IDE product, not the CLI. `domain` is
+// the X-Domain header the upstream requires, and it must always be derived from
+// baseUrl rather than hardcoded twice.
+export { CODEBUDDY_INTL_USER_AGENT };
+
+export const CODEBUDDY_INTL_CONFIG = {
+  baseUrl: "https://www.codebuddy.ai",
+  stateUrl: "https://www.codebuddy.ai/v2/plugin/auth/state",
+  tokenUrl: "https://www.codebuddy.ai/v2/plugin/auth/token",
+  refreshUrl: "https://www.codebuddy.ai/v2/plugin/auth/token/refresh",
+  userAgent: CODEBUDDY_INTL_USER_AGENT,
+  domain: "www.codebuddy.ai",
+  platform: "ide",
   pollInterval: 5000,
 };
 
@@ -520,6 +542,7 @@ export const PROVIDERS = {
   DEVIN_CLI: "devin-cli",
   TRAE: "trae",
   CODEBUDDY_CN: "codebuddy-cn",
+  CODEBUDDY_INTL: "codebuddy-intl",
   GROK_CLI: "grok-cli",
   XAI_OAUTH: "xai-oauth",
   OPENFERENCE: "openference",

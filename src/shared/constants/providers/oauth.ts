@@ -307,6 +307,24 @@ export const OAUTH_PROVIDERS = {
     authHint:
       "Tencent CodeBuddy CN (copilot.tencent.com). Sign in via the official CLI device-code flow, or paste a direct API key (sent as Authorization: Bearer). Catalog: GLM / Kimi / MiniMax / DeepSeek / Hunyuan.",
   },
+  "codebuddy-intl": {
+    id: "codebuddy-intl",
+    serviceKinds: ["llm"],
+    alias: "cbai",
+    name: "CodeBuddy Intl",
+    icon: "smart_toy",
+    color: "#006EFF",
+    textIcon: "CB",
+    website: "https://www.codebuddy.ai",
+    subscriptionRisk: true,
+    riskNoticeVariant: "oauth",
+    // Separate issuer from CN (www.codebuddy.ai/auth/realms/copilot) — a CN
+    // token is rejected here with 401 invalid_issuer, so the two accounts are
+    // never interchangeable. Same catalog note applies, but the .ai host ships a
+    // DIFFERENT model list than copilot.tencent.com.
+    authHint:
+      "CodeBuddy International (www.codebuddy.ai). Sign in via the official IDE device-code flow, or paste a direct API key (sent as Authorization: Bearer). Separate account/issuer from CodeBuddy CN.",
+  },
   "muse-code": {
     id: "muse-code",
     serviceKinds: ["llm"],

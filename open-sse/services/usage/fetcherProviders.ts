@@ -58,6 +58,10 @@ export const USAGE_FETCHER_PROVIDERS = [
   "vertex",
   "vertex-partner",
   "codebuddy-cn",
+  // CodeBuddy intl bills through the same meter envelope as CN but on the .ai
+  // host — both regions must be declared here or the dispatcher/usage tests
+  // flag the handler in usage.ts as an undeclared fetcher.
+  "codebuddy-intl",
   "openrouter",
   // LLM Gateway DevPass allowance (GET /v1/key → monthly + weekly premium)
   "llmgateway",

@@ -281,6 +281,13 @@ export const OAUTH_TEST_CONFIG: Record<string, OAuthTestConfigEntry> = {
     checkExpiry: true,
     refreshable: true,
   },
+  "codebuddy-intl": {
+    // Same shape as CN, against the .ai host: there is no cheap "test" probe,
+    // so validate token presence/expiry + the refresh path. Real connectivity is
+    // proven by /v2/chat/completions traffic (the gateway is stream-only).
+    checkExpiry: true,
+    refreshable: true,
+  },
   "devin-cli": {
     // Same gap as grok-cli #7610: absent from this table, so "Test Connection"
     // always fell through to "Provider test not supported" and left a working

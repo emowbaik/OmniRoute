@@ -90,6 +90,17 @@ export const QODER_DEFAULT_USER_AGENT = "Qoder-Cli";
 // client fingerprint Tencent's WAF flags as anomalous (#12702).
 export const CODEBUDDY_CN_USER_AGENT = "CLI/2.108.1 CodeBuddy/2.108.1";
 
+// CODEBUDDY_INTL_USER_AGENT is the same single-source-of-truth pattern for the
+// .ai host, and it is deliberately a DIFFERENT fingerprint from the CN constant:
+// the intl gateway is the IDE product (X-IDE-Type/Name: IDE) while the CN
+// gateway is the CLI. The two must never be swapped — a mismatched
+// client/IDE fingerprint on a single account is what the upstream WAF flags as
+// anomalous. It MUST stay identical across OAuth
+// (src/lib/oauth/constants/oauth.ts), chat completions
+// (open-sse/config/providers/registry/codebuddy-intl/index.ts) and usage/quota
+// (open-sse/services/usage/codebuddy-intl.ts).
+export const CODEBUDDY_INTL_USER_AGENT = "IDE/2.108.1 CodeBuddy/2.108.1";
+
 export const KIRO_SDK_USER_AGENT = "AWS-SDK-JS/3.0.0 kiro-ide/1.0.0";
 export const KIRO_AMZ_USER_AGENT = "aws-sdk-js/3.0.0 kiro-ide/1.0.0";
 export const KIRO_STREAMING_TARGET =
